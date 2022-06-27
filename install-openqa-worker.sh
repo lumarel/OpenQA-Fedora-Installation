@@ -25,13 +25,15 @@ else
 fi
 
 # Open vnc port for 4 local worker clients
-sudo firewall-cmd --permanent --new-service=openqa-vnc
-sudo firewall-cmd --permanent --service=openqa-vnc --add-port=5991-5999/tcp
-sudo firewall-cmd --permanent --add-service openqa-vnc
-sudo firewall-cmd --permanent --new-service=openqa-socket
-sudo firewall-cmd --permanent --service=openqa-socket --add-port=20000-20089/tcp
-sudo firewall-cmd --permanent --add-service openqa-socket
-sudo firewall-cmd --reload
+if ! ( sudo firewall-cmd --get-services | grep -q openqa-vnc ); then
+  sudo firewall-cmd --permanent --new-service=openqa-vnc
+  sudo firewall-cmd --permanent --service=openqa-vnc --add-port=5991-5999/tcp
+  sudo firewall-cmd --permanent --add-service openqa-vnc
+  sudo firewall-cmd --permanent --new-service=openqa-socket
+  sudo firewall-cmd --permanent --service=openqa-socket --add-port=20000-20089/tcp
+  sudo firewall-cmd --permanent --add-service openqa-socket
+  sudo firewall-cmd --reload
+fi
 
 if sudo grep -q foo /etc/openqa/client.conf; then
   sudo bash -c "cat >/etc/openqa/client.conf <<'EOF'
