@@ -16,7 +16,7 @@ export release
 echo Installing OpenQA Worker on Fedora
 echo Running on: "$release"
 
-pkgs=(guestfs-tools libguestfs-xfs libvirt-daemon-config-network perl-REST-Client python3-libguestfs virt-install withlock)
+pkgs=(guestfs-tools libguestfs-xfs libvirt-daemon-config-network openqa-worker perl-REST-Client python3-libguestfs virt-install withlock)
 if ! rpm -q "${pkgs[@]}" &> /dev/null; then
   sudo dnf install -y "${pkgs[@]}"
 else
