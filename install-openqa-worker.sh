@@ -51,6 +51,6 @@ HOST = https://$1
 EOF"
 fi
 
-if ! systemctl is-active openqa-worker.service@1 &> /dev/null; then
-  sudo systemctl enable --now openqa-worker.service@1
+if ! systemctl is-active openqa-worker@1.service &> /dev/null; then
+  sudo systemctl enable --now openqa-worker@1.service
 fi
