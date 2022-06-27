@@ -44,7 +44,7 @@ EOF"
   echo "Note! the api key will expire in one day after installation!"
 fi
 
-if sudo grep -q http://openqa.example.host /etc/openqa/workers.conf; then
+if ! sudo grep -q http://openqa.example.host /etc/openqa/workers.conf; then
   sudo bash -c "cat >/etc/openqa/workers.conf <<'EOF'
 [global]
 HOST = https://$1
