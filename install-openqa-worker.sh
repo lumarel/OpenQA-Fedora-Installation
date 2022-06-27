@@ -5,9 +5,10 @@ set -e
 # Test script based on installation guide from Fedora:
 # https://fedoraproject.org/wiki/OpenQA_direct_installation_guide
 
-if [ -z "$1" ]
-  then
-    echo "No argument supplied, please enter OpenQA Server fqdn"
+if [ -z "$1" ]; then
+  echo "No argument supplied, please enter OpenQA Server fqdn, or if installing"
+  echo "server and worker on a single node supply 'localhost'."
+  exit 1
 fi
 
 
